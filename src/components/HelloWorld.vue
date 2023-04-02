@@ -1,7 +1,7 @@
 <template>
   <el-form ref="formRef" :model="form" label-width="300px">
     <el-form-item
-      label="姓名"
+      :label="form.cname.label"
       prop="cname"
       :required="form.cname.required"
       :error="validateErrors.cname"
@@ -9,7 +9,7 @@
       <el-input v-model="form.cname.value" />
     </el-form-item>
     <el-form-item
-      label="英文名"
+      :label="form.name.label"
       prop="name"
       :required="form.name.required"
       :error="validateErrors.name"
@@ -25,7 +25,7 @@
       <el-input-number v-model="form.age.value" />
     </el-form-item>
     <el-form-item
-      label="性别"
+      :label="form.sex.label"
       prop="sex"
       :required="form.sex.required"
       :error="validateErrors.sex"
@@ -36,7 +36,7 @@
       </el-radio-group>
     </el-form-item>
     <el-form-item
-      label="手机号"
+      :label="form.phone.label"
       prop="phone"
       :required="form.phone.required"
       :error="validateErrors.phone"
@@ -44,7 +44,7 @@
       <el-input v-model="form.phone.value" />
     </el-form-item>
     <el-form-item
-      label="身份证号"
+      :label="form.IDCard.label"
       prop="IDCard"
       :required="form.IDCard.required"
       :error="validateErrors.IDCard"
@@ -52,7 +52,7 @@
       <el-input v-model="form.IDCard.value" />
     </el-form-item>
     <el-form-item
-      label="邮箱"
+      :label="form.email.label"
       prop="email"
       :required="form.email.required"
       :error="validateErrors.email"
@@ -99,13 +99,47 @@ const submitLoading = ref(false)
 
 // 定义数据模型
 const form = reactive<ValidateDataModel>({
-  cname: { value: '', rules: 'cname', required: true },
-  name: { value: '', rules: 'name', required: true },
-  age: { value: undefined, rules: 'integer|between:18,60', required: true },
-  sex: { value: '', required: true },
-  phone: { value: '', rules: 'phone', required: true },
-  IDCard: { value: '', rules: 'IDCard', required: true },
-  email: { value: '', rules: 'email', required: true },
+  cname: {
+    value: '',
+    rules: 'cname',
+    required: true,
+    label: '姓名'
+  },
+  name: {
+    value: '',
+    rules: 'name',
+    required: true,
+    label: '英文名'
+  },
+  age: {
+    value: undefined,
+    rules: 'integer|between:18,60',
+    required: true,
+    label: '年龄'
+  },
+  sex: {
+    value: '',
+    required: true,
+    label: '性别'
+  },
+  phone: {
+    value: '',
+    rules: 'phone',
+    required: true,
+    label: '手机'
+  },
+  IDCard: {
+    value: '',
+    rules: 'IDCard',
+    required: true,
+    label: '身份证'
+  },
+  email: {
+    value: '',
+    rules: 'email',
+    required: true,
+    label: '邮箱'
+  },
   asyncRule: { value: '', rules: 'asyncRule' },
   lengthRule: { value: '', rules: 'length:5' },
 })

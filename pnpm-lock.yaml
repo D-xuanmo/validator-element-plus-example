@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@vitejs/plugin-vue': ^4.1.0
-  '@xuanmo/validator': ^0.0.5
+  '@xuanmo/validator': ^0.0.7
   element-plus: ^2.3.2
   typescript: ^4.9.3
   vite: ^4.2.0
@@ -10,7 +10,7 @@ specifiers:
   vue-tsc: ^1.2.0
 
 dependencies:
-  '@xuanmo/validator': 0.0.5
+  '@xuanmo/validator': 0.0.7
   element-plus: 2.3.2_vue@3.2.47
   vue: 3.2.47
 
@@ -432,8 +432,8 @@ packages:
       - vue
     dev: false
 
-  /@xuanmo/validator/0.0.5:
-    resolution: {integrity: sha512-i2UHJy+PhgeQ0M1DdlQlxEa9VHVmZZuiYIX4bZqwBEx1A52lWxg3H+4+UsM9FpM8kET91l4gBNB5YJt8umkmbA==}
+  /@xuanmo/validator/0.0.7:
+    resolution: {integrity: sha512-1yJNwc8/fFq6PSK8cgDnpUVoGYPnjKe3g358odF5APi4Tk8t2NeOioFMFwfR2groQIVueCbV8q3nkJ18M2bTvQ==}
     dev: false
 
   /async-validator/4.2.5:
