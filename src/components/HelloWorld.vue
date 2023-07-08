@@ -1,79 +1,79 @@
 <template>
-  <el-form ref="formRef" :model="form" label-width="300px">
+  <el-form ref="formRef" :model="formModel" label-width="300px">
     <el-form-item
-      :label="form.cname.label"
+      :label="formModel[0].label"
       prop="cname"
-      :required="form.cname.required"
+      :required="formModel[0].required"
       :error="validateErrors.cname"
     >
-      <el-input v-model="form.cname.value" />
+      <el-input v-model="formModel[0].value" />
     </el-form-item>
     <el-form-item
-      :label="form.name.label"
+      :label="formModel[1].label"
       prop="name"
-      :required="form.name.required"
+      :required="formModel[1].required"
       :error="validateErrors.name"
     >
-      <el-input v-model="form.name.value" />
+      <el-input v-model="formModel[1].value" />
     </el-form-item>
     <el-form-item
       label="年龄(限制最小18，最大60)"
       prop="age"
-      :required="form.age.required"
+      :required="formModel[2].required"
       :error="validateErrors.age"
     >
-      <el-input-number v-model="form.age.value" />
+      <el-input-number v-model="formModel[2].value" />
     </el-form-item>
     <el-form-item
-      :label="form.sex.label"
+      :label="formModel[3].label"
       prop="sex"
-      :required="form.sex.required"
+      :required="formModel[3].required"
       :error="validateErrors.sex"
     >
-      <el-radio-group v-model="form.sex.value">
+      <el-radio-group v-model="formModel[3].value">
         <el-radio label="man">男</el-radio>
         <el-radio label="woman">女</el-radio>
       </el-radio-group>
     </el-form-item>
     <el-form-item
-      :label="form.phone.label"
+      :label="formModel[4].label"
       prop="phone"
-      :required="form.phone.required"
+      :required="formModel[4].required"
       :error="validateErrors.phone"
     >
-      <el-input v-model="form.phone.value" />
+      <el-input v-model="formModel[4].value" />
     </el-form-item>
     <el-form-item
-      :label="form.IDCard.label"
+      :label="formModel[5].label"
       prop="IDCard"
-      :required="form.IDCard.required"
+      :required="formModel[5].required"
       :error="validateErrors.IDCard"
     >
-      <el-input v-model="form.IDCard.value" />
+      <el-input v-model="formModel[5].value" />
     </el-form-item>
     <el-form-item
-      :label="form.email.label"
+      :label="formModel[6].label"
       prop="email"
-      :required="form.email.required"
+      :required="formModel[6].required"
       :error="validateErrors.email"
     >
-      <el-input v-model="form.email.value" />
+      <el-input v-model="formModel[6].value" />
     </el-form-item>
     <el-form-item
       label="长度限制"
       prop="lengthRule"
-      :required="form.lengthRule.required"
+      :required="formModel[7].required"
       :error="validateErrors.lengthRule"
     >
-      <el-input v-model="form.lengthRule.value" />
+      <el-input v-model="formModel[7].value" />
     </el-form-item>
     <el-form-item
       label="1.5s 的异步校验"
       prop="asyncRule"
-      :required="form.asyncRule.required"
+      :required="formModel[8].required"
       :error="validateErrors.asyncRule"
     >
-      <el-input v-model="form.asyncRule.value" />
+      <el-input v-model="formModel[8].value" />
     </el-form-item>
     <el-form-item>
       <el-button
@@ -98,56 +98,71 @@ const validateErrors = ref<Record<string, ValidateErrorType>>({})
 const submitLoading = ref(false)
 
 // 定义数据模型
-const form = reactive<ValidateDataModel>({
-  cname: {
+const formModel = reactive<ValidateDataModel>([
+  {
+    dataKey: 'cname',
     value: '',
     rules: 'cname',
     required: true,
     label: '姓名'
   },
-  name: {
+  {
+    dataKey: 'name',
     value: '',
     rules: 'name',
     required: true,
     label: '英文名'
   },
-  age: {
+  {
+    dataKey: 'age',
     value: undefined,
     rules: 'integer|between:18,60',
     required: true,
     label: '年龄'
   },
-  sex: {
+  {
+    dataKey: 'sex',
     value: '',
     required: true,
     label: '性别'
   },
-  phone: {
+  {
+    dataKey: 'phone',
     value: '',
     rules: 'phone',
     required: true,
     label: '手机'
   },
-  IDCard: {
+  {
+    dataKey: 'IDCard',
     value: '',
     rules: 'IDCard',
     required: true,
     label: '身份证'
   },
-  email: {
+  {
+    dataKey: 'email',
     value: '',
     rules: 'email',
     required: true,
     label: '邮箱'
   },
-  asyncRule: { value: '', rules: 'asyncRule' },
-  lengthRule: { value: '', rules: 'length:5' },
-})
+  {
+    dataKey: 'lengthRule',
+    value: '',
+    rules: 'length:5'
+  },
+  {
+    dataKey: 'asyncRule',
+    value: '',
+    rules: 'asyncRule'
+  }
+])
 
 const submitForm = () => {
   submitLoading.value = true
   // 执行校验
-  validate(form)
+  validate(formModel)
     .then(() => {
       ElMessage({
         message: '校验通过',
